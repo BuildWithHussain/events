@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Riyadh, KSA</title>
+
+	<link rel="stylesheet" href="/assets/events/mystaticfile.css">
+</head>
+<body>
+	<h1>Hello World!</h1>
+
+	{% if subscription_active %}
+	<div>
+		<p>Secret message: {{ secret_message }}</p>
+	</div>
+	{% else %}
+		<div>You don't have an active subscription. Subscribe now!</div>
+	{% endif %}
+
+	<script src="/assets/events/js/show_alert.js"></script>
+</body>
+</html>

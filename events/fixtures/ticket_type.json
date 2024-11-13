@@ -1,0 +1,14 @@
+[
+ {
+  "conference": "BIBAN24",
+  "currency": null,
+  "docstatus": 0,
+  "doctype": "Ticket Type",
+  "max_limit": 200,
+  "modified": "2024-11-11 10:51:25.348479",
+  "name": "0emluamlfc",
+  "price": 100.0,
+  "ticket_type": "Paid",
+  "title": "Basic"
+ }
+]

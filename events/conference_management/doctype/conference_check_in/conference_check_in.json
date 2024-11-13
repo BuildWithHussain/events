@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2024-11-11 15:01:21.728641",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_u15l",
+  "checkin_at",
+  "column_break_ados",
+  "scan_hero",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_u15l",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Conference Check In",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "checkin_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Checkin At",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ados",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "scan_hero",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Scan Hero",
+   "options": "User",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-11 15:11:40.496239",
+ "modified_by": "Administrator",
+ "module": "Conference Management",
+ "name": "Conference Check In",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

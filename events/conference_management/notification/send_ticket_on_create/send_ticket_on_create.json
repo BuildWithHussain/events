@@ -1,0 +1,30 @@
+{
+ "attach_print": 1,
+ "channel": "Email",
+ "creation": "2024-11-11 11:31:23.029482",
+ "days_in_advance": 0,
+ "docstatus": 0,
+ "doctype": "Notification",
+ "document_type": "Conference Ticket",
+ "enabled": 1,
+ "event": "Custom",
+ "idx": 0,
+ "is_standard": 1,
+ "message": "<p>Hi {{ doc.full_name }}!</p>\n\n<p>Here is your ticket!</p>\n",
+ "message_type": "Markdown",
+ "minutes_offset": 0,
+ "modified": "2024-11-11 16:25:42.771326",
+ "modified_by": "Administrator",
+ "module": "Conference Management",
+ "name": "Send Ticket on create",
+ "owner": "Administrator",
+ "print_format": "Ticket Design",
+ "recipients": [
+  {
+   "receiver_by_document_field": "owner"
+  }
+ ],
+ "send_system_notification": 0,
+ "send_to_all_assignees": 0,
+ "subject": "Congratulations {{ doc.full_name }}, your ticket is booked!"
+}

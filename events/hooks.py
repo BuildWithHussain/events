@@ -5,21 +5,37 @@ app_description = "Conf management app"
 app_email = "bwh@gmail.com"
 app_license = "mit"
 
+
+export_python_type_annotations = True
+
+fixtures = [{
+    "dt": "Ticket Type",
+    "filters": {
+        "ticket_type": "Paid"
+	}
+},
+{
+    "dt": "Role",
+    "filters": {
+        "name": "Conference Manager"
+	}
+}]
+
 # Apps
 # ------------------
 
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "events",
-# 		"logo": "/assets/events/logo.png",
-# 		"title": "Events",
-# 		"route": "/events",
-# 		"has_permission": "events.api.permission.has_app_permission"
-# 	}
-# ]
+add_to_apps_screen = [
+	{
+		"name": "events",
+		"logo": "/assets/events/logo.png",
+		"title": "Events",
+		"route": "/app",
+        "has_permission": ""
+	}
+]
 
 # Includes in <head>
 # ------------------
@@ -117,13 +133,14 @@ app_license = "mit"
 # -----------
 # Permissions evaluated in scripted ways
 
-# permission_query_conditions = {
-# 	"Event": "frappe.desk.doctype.event.event.get_permission_query_conditions",
-# }
+permission_query_conditions = {
+	"Conference": "events.api.get_condition",
+}
+
 #
-# has_permission = {
-# 	"Event": "frappe.desk.doctype.event.event.has_permission",
-# }
+has_permission = {
+	"Conference": "events.api.has_permission",
+}
 
 # DocType Class
 # ---------------
@@ -140,31 +157,19 @@ app_license = "mit"
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
 # 	}
 # }
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"events.tasks.all"
-# 	],
-# 	"daily": [
-# 		"events.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"events.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"events.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"events.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+    "cron": {
+        "0 20 * * 3": [
+			"events.api.send_reminder_mails"
+		]
+	}
+}
 
 # Testing
 # -------
@@ -175,9 +180,9 @@ app_license = "mit"
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "events.event.get_events"
+# 	"events.api.get_emoji": "my_custom_app.my_override.something"
 # }
-#
+
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps

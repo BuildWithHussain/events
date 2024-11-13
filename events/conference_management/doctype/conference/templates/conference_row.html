@@ -1,0 +1,10 @@
+<div>
+	{% if doc.banner_image %}
+	<img src="{{ doc.banner_image }}" alt="conference banner image">
+
+{% else %}
+	<p>No image available</p>
+{% endif %}
+	<a href="/{{ doc.route |e }}">{{ (doc.title or doc.name) |e }}</a>
+</div>
+<!-- this is a sample default list template -->

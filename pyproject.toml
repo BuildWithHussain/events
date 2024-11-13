@@ -9,6 +9,7 @@ readme = "README.md"
 dynamic = ["version"]
 dependencies = [
     # "frappe~=15.0.0" # Installed and managed by bench.
+    "qrcode~=8.0"
 ]
 
 [build-system]
@@ -52,4 +53,4 @@ typing-modules = ["frappe.types.DF"]
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "tab"
-docstring-code-format = true
+# docstring-code-format = true

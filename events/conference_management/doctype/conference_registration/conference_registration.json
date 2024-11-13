@@ -1,0 +1,127 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CE-{YYYY}-{MM}-{conference}-{###}",
+ "creation": "2024-11-10 13:58:20.061839",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_name",
+  "company",
+  "conference",
+  "ticket_type",
+  "column_break_htpq",
+  "email",
+  "contact_number",
+  "attendees",
+  "attendee_count",
+  "section_break_90dn",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_90dn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Conference Registration",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email",
+   "options": "Email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_htpq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_number",
+   "fieldtype": "Phone",
+   "label": "Contact Number"
+  },
+  {
+   "fieldname": "conference",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Conference",
+   "options": "Conference",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attendees",
+   "fieldtype": "Table",
+   "label": "Attendees",
+   "options": "Registration Attendee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "ticket_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Ticket Type",
+   "options": "Ticket Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "attendee_count",
+   "fieldtype": "Int",
+   "label": "Attendee Count",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Conference Ticket",
+   "link_fieldname": "registration"
+  }
+ ],
+ "modified": "2024-11-11 13:27:13.276551",
+ "modified_by": "Administrator",
+ "module": "Conference Management",
+ "name": "Conference Registration",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

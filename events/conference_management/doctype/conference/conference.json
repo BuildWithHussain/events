@@ -1,0 +1,207 @@
+{
+ "actions": [],
+ "allow_guest_to_view": 1,
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "prompt",
+ "creation": "2024-11-10 12:44:09.917469",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "approved",
+  "section_break_nxcy",
+  "starts_on",
+  "type",
+  "mode",
+  "column_break_ymls",
+  "ends_on",
+  "livestream_url",
+  "venue",
+  "city",
+  "is_published",
+  "route",
+  "section_break_pqon",
+  "total_capacity",
+  "display_details_tab",
+  "banner_image",
+  "section_break_jptw",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "starts_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Starts on",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ymls",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ends_on",
+   "fieldtype": "Datetime",
+   "label": "Ends on",
+   "reqd": 1
+  },
+  {
+   "default": "Free",
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Type",
+   "options": "Free\nPaid",
+   "reqd": 1
+  },
+  {
+   "description": "Calculated based on Ticket Types",
+   "fieldname": "total_capacity",
+   "fieldtype": "Int",
+   "label": "Total Capacity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "banner_image",
+   "fieldtype": "Attach Image",
+   "label": "Banner Image"
+  },
+  {
+   "depends_on": "eval:doc.mode===\"Online\"",
+   "fieldname": "livestream_url",
+   "fieldtype": "Data",
+   "label": "Livestream URL",
+   "mandatory_depends_on": "eval:doc.mode===\"Online\"",
+   "options": "URL"
+  },
+  {
+   "depends_on": "eval:doc.mode===\"In Person\"",
+   "fieldname": "venue",
+   "fieldtype": "Small Text",
+   "label": "Venue"
+  },
+  {
+   "depends_on": "eval:doc.mode===\"In Person\"",
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "section_break_pqon",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_jptw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mode",
+   "fieldtype": "Select",
+   "label": "Mode",
+   "options": "Online\nIn Person",
+   "reqd": 1
+  },
+  {
+   "fieldname": "display_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Display Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published?"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "Route"
+  },
+  {
+   "default": "0",
+   "fieldname": "approved",
+   "fieldtype": "Check",
+   "label": "Approved?",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "section_break_nxcy",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "has_web_view": 1,
+ "image_field": "banner_image",
+ "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
+ "links": [
+  {
+   "link_doctype": "Ticket Type",
+   "link_fieldname": "conference"
+  }
+ ],
+ "modified": "2024-11-12 14:22:55.584667",
+ "modified_by": "Administrator",
+ "module": "Conference Management",
+ "name": "Conference",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Conference Manager",
+   "select": 1,
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "if_owner": 1,
+   "print": 1,
+   "report": 1,
+   "role": "Conference Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Conference Auditor",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Conference Auditor",
+   "share": 1
+  }
+ ],
+ "route": "conf",
+ "show_preview_popup": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

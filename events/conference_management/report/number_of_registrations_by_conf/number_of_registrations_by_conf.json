@@ -1,0 +1,46 @@
+{
+ "add_total_row": 0,
+ "columns": [
+  {
+   "fieldname": "conference",
+   "fieldtype": "Link",
+   "label": "Conference",
+   "options": "Conference",
+   "width": 300
+  },
+  {
+   "fieldname": "number_of_registrations",
+   "fieldtype": "Int",
+   "label": "Count",
+   "width": 0
+  }
+ ],
+ "creation": "2024-11-12 10:50:17.650798",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [
+  {
+   "fieldname": "my_filter",
+   "fieldtype": "Data",
+   "label": "My Filter",
+   "mandatory": 1,
+   "wildcard_filter": 0
+  }
+ ],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2024-11-12 10:55:37.873469",
+ "modified_by": "Administrator",
+ "module": "Conference Management",
+ "name": "Number of Registrations by Conf",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT conference, COUNT(*) AS number_of_registrations\nFROM `tabConference Registration`\nGROUP BY conference;",
+ "ref_doctype": "Conference Registration",
+ "report_name": "Number of Registrations by Conf",
+ "report_type": "Query Report",
+ "roles": [],
+ "timeout": 0
+}

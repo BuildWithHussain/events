@@ -1,0 +1,15 @@
+[
+ {
+  "desk_access": 1,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2024-11-12 13:53:08.989381",
+  "name": "Conference Manager",
+  "restrict_to_domain": null,
+  "role_name": "Conference Manager",
+  "two_factor_auth": 0
+ }
+]

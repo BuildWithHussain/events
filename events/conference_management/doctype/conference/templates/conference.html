@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h1>{{ doc.name }}</h1>
+
+	{{ doc.description }}
+
+	{% if doc.banner_image %}
+		<img src="{{ doc.banner_image }}" alt="conference banner image">
+
+	{% else %}
+		<p>No image available</p>
+	{% endif %}
+
+
+	<a href="/conference-registration/new?conference={{doc.name}}">Register Now!</a>
+</body>
+
+<style>
+	img {
+		max-width: 50%;
+	}
+
+	a {
+		display: inline-block;
+		text-decoration: none;
+		background-color: gold;
+		color: black;
+		padding: 10px;
+	}
+</style>
+</html>
+
+
