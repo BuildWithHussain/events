@@ -4,7 +4,7 @@ import frappe
 def get_emoji():
     frappe.only_for("System Manager")
     frappe.get_doc({"doctype": "ToDo", "description": "ToDo from api job"}).insert()
-    return "🚀"
+    return "🌩️"
 
 
 def send_reminder_mails():
