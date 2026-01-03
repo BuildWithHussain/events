@@ -72,35 +72,40 @@
 		<div v-if="availableAddOns.length > 0">
 			<hr class="my-4" />
 
-			<div v-for="addOn in availableAddOns" :key="addOn.name" class="mb-4">
-				<div class="flex flex-col gap-3">
-					<FormControl
-						type="checkbox"
-						:model-value="getAddOnSelected(addOn.name)"
-						@update:model-value="updateAddOnSelection(addOn.name, $event)"
-						:id="`add_on_${addOn.name}_${index}`"
-						:label="__(addOn.title)"
-					/>
-					<div class="text-ink-gray-5 text-sm/4" v-if="addOn.description">
-						<p>
-							{{ __(addOn.description) }}
-						</p>
+			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+				<div v-for="addOn in availableAddOns" :key="addOn.name">
+					<div class="flex flex-col gap-2">
+						<FormControl
+							type="checkbox"
+							:model-value="getAddOnSelected(addOn.name)"
+							@update:model-value="updateAddOnSelection(addOn.name, $event)"
+							:id="`add_on_${addOn.name}_${index}`"
+							:label="__(addOn.title)"
+						/>
+						<div class="text-ink-gray-5 text-sm/4" v-if="addOn.description">
+							<p>
+								{{ __(addOn.description) }}
+							</p>
+						</div>
 					</div>
-				</div>
 
-				<div
-					v-if="addOn.user_selects_option && getAddOnSelected(addOn.name)"
-					class="mt-2 ml-6"
-				>
-					<FormControl
-						:model-value="getAddOnOption(addOn.name)"
-						@update:model-value="updateAddOnOption(addOn.name, $event)"
-						type="select"
-						:options="
-							addOn.options.map((option) => ({ label: __(option), value: option }))
-						"
-						size="sm"
-					/>
+					<div
+						v-if="addOn.user_selects_option && getAddOnSelected(addOn.name)"
+						class="mt-2 ml-6"
+					>
+						<FormControl
+							:model-value="getAddOnOption(addOn.name)"
+							@update:model-value="updateAddOnOption(addOn.name, $event)"
+							type="select"
+							:options="
+								addOn.options.map((option) => ({
+									label: __(option),
+									value: option,
+								}))
+							"
+							size="sm"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>
