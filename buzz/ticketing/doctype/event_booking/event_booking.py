@@ -107,7 +107,25 @@ class EventBooking(Document):
 				attendee.currency = currency
 
 	def on_submit(self):
+		self.validate_coupon_availability()
 		self.generate_tickets()
+
+	def validate_coupon_availability(self):
+		"""Re-validate coupon with lock to prevent race condition."""
+		if not self.coupon_code:
+			return
+
+		# Lock coupon row to prevent concurrent over-allocation
+		coupon = frappe.get_doc("Buzz Coupon Code", self.coupon_code, for_update=True)
+
+		if coupon.coupon_type == "Free Tickets":
+			remaining = coupon.number_of_free_tickets - coupon.free_tickets_claimed
+			tickets_requested = len(
+				[a for a in self.attendees if str(a.ticket_type) == str(coupon.ticket_type)]
+			)
+
+			if remaining < tickets_requested:
+				frappe.throw(_("Only {0} free tickets remaining").format(remaining))
 
 	def generate_tickets(self):
 		for attendee in self.attendees:
