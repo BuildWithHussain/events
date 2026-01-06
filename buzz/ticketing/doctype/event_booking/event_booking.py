@@ -5,6 +5,7 @@ import json
 import frappe
 from frappe import _
 from frappe.model.document import Document
+from frappe.utils import get_datetime, get_datetime_in_timezone, now_datetime
 
 from buzz.payments import mark_payment_as_received
 
@@ -37,6 +38,7 @@ class EventBooking(Document):
 	# end: auto-generated types
 
 	def validate(self):
+		self.validate_event_has_ended()
 		self.validate_ticket_availability()
 		self.fetch_amounts_from_ticket_types()
 		self.set_currency()
@@ -173,3 +175,23 @@ class EventBooking(Document):
 		tickets = frappe.db.get_all("Event Ticket", filters={"booking": self.name}, pluck="name")
 		for ticket in tickets:
 			frappe.get_cached_doc("Event Ticket", ticket).cancel()
+
+	def validate_event_has_ended(self):
+		event_doc = frappe.get_cached_doc("Buzz Event", self.event)
+
+		if not event_doc.end_date:
+			return
+
+		time_part = str(event_doc.end_time) if event_doc.end_time else "23:59:59"
+		event_end_naive = get_datetime(f"{event_doc.end_date} {time_part}")
+
+		if event_doc.time_zone:
+			current_time_aware = get_datetime_in_timezone(event_doc.time_zone)
+			current_time_at_venue = current_time_aware.replace(tzinfo=None)
+
+			if current_time_at_venue > event_end_naive:
+				frappe.throw(_("Cannot book tickets. This event has already ended."), title=_("Event Ended"))
+
+		else:
+			if now_datetime() > event_end_naive:
+				frappe.throw(_("Cannot book tickets. This event has already ended."), title=_("Event Ended"))
