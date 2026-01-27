@@ -13,6 +13,8 @@
 				:customFields="eventBookingData.customFields"
 				:eventRoute="eventRoute"
 				:paymentGateways="eventBookingData.paymentGateways"
+				:upiPaymentEnabled="eventBookingData.upiPaymentEnabled"
+				:upiSettings="eventBookingData.upiSettings"
 			/>
 		</div>
 	</div>
@@ -30,6 +32,8 @@ const eventBookingData = reactive({
 	eventDetails: null,
 	customFields: null,
 	paymentGateways: [],
+	upiPaymentEnabled: false,
+	upiSettings: {},
 });
 
 const props = defineProps({
@@ -56,6 +60,8 @@ const eventBookingResource = createResource({
 		eventBookingData.eventDetails = data.event_details || {};
 		eventBookingData.customFields = data.custom_fields || [];
 		eventBookingData.paymentGateways = data.payment_gateways || [];
+		eventBookingData.upiPaymentEnabled = data.upi_payment_enabled || false;
+		eventBookingData.upiSettings = data.upi_settings || {};
 	},
 	onError: (error) => {
 		if (error.message.includes("DoesNotExistError")) {

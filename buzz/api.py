@@ -164,6 +164,15 @@ def get_event_booking_data(event_route: str) -> dict:
 	# Payment Gateways
 	data.payment_gateways = get_payment_gateways_for_event(event_doc.name)
 
+	# UPI Payment Settings
+	data.upi_payment_enabled = event_doc.enable_upi_payment
+	if event_doc.enable_upi_payment:
+		data.upi_settings = {
+			"upi_id": event_doc.upi_id,
+			"qr_code": event_doc.upi_qr_code,
+			"instructions": event_doc.upi_instructions
+		}
+
 	return data
 
 
@@ -241,6 +250,21 @@ def process_booking(
 		booking.flags.ignore_permissions = True
 		booking.submit()
 		return {"booking_name": booking.name}
+
+	# Check if UPI payment is enabled and no payment gateway is provided
+	event_doc = frappe.get_cached_doc("Buzz Event", event)
+	if event_doc.enable_upi_payment and not payment_gateway:
+		# For UPI payments, submit booking directly without payment gateway
+		# Mark this as UPI payment in additional fields
+		booking.append("additional_fields", {
+			"fieldname": "payment_method",
+			"value": "UPI",
+			"label": "Payment Method",
+			"fieldtype": "Data"
+		})
+		booking.flags.ignore_permissions = True
+		booking.submit()
+		return {"booking_name": booking.name, "upi_payment": True}
 
 	return {
 		"payment_link": get_payment_link_for_booking(

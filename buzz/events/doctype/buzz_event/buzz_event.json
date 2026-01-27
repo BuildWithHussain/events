@@ -40,6 +40,11 @@
   "payments_tab",
   "section_break_owtc",
   "payment_gateways",
+  "upi_payment_section",
+  "enable_upi_payment",
+  "upi_id",
+  "upi_qr_code",
+  "upi_instructions",
   "tax_settings_section",
   "apply_tax",
   "tax_label",
@@ -364,6 +369,36 @@
    "label": "Tax Settings"
   },
   {
+   "description": "Copy UPI ID or scan QR and upload screenshot for verification",
+   "fieldname": "upi_payment_section",
+   "fieldtype": "Section Break",
+   "label": "UPI Payment via QR / UPI ID"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_upi_payment",
+   "fieldtype": "Check",
+   "label": "Allow Manual UPI Payment"
+  },
+  {
+   "depends_on": "eval:doc.enable_upi_payment==1",
+   "fieldname": "upi_id",
+   "fieldtype": "Data",
+   "label": "Merchant UPI ID"
+  },
+  {
+   "depends_on": "eval:doc.enable_upi_payment==1",
+   "fieldname": "upi_qr_code",
+   "fieldtype": "Attach Image",
+   "label": "UPI QR Code"
+  },
+  {
+   "depends_on": "eval:doc.enable_upi_payment==1",
+   "fieldname": "upi_instructions",
+   "fieldtype": "Small Text",
+   "label": "Payment Instructions"
+  },
+  {
    "default": "0",
    "fieldname": "apply_tax",
    "fieldtype": "Check",
@@ -463,7 +498,7 @@
    "link_fieldname": "event"
   }
  ],
- "modified": "2026-01-14 11:13:04.386770",
+ "modified": "2026-01-25 16:56:28.310381",
  "modified_by": "Administrator",
  "module": "Events",
  "name": "Buzz Event",
