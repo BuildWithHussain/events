@@ -14,6 +14,8 @@
   "banner_image",
   "host",
   "venue",
+  "allow_guest_booking",
+  "guest_verification_method",
   "section_break_naqe",
   "start_date",
   "start_time",
@@ -400,6 +402,21 @@
    "fieldname": "attach_calendar_invite",
    "fieldtype": "Check",
    "label": "Attach Calendar Invite"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_guest_booking",
+   "fieldtype": "Check",
+   "label": "Allow Guest Booking"
+  },
+  {
+   "default": "Email OTP",
+   "depends_on": "eval:doc.allow_guest_booking",
+   "description": "How to verify guest identity before booking",
+   "fieldname": "guest_verification_method",
+   "fieldtype": "Select",
+   "label": "Guest Verification Method",
+   "options": "None\nEmail OTP\nPhone OTP"
   }
  ],
  "grid_page_length": 50,
@@ -472,7 +489,7 @@
    "link_fieldname": "event"
   }
  ],
- "modified": "2026-01-27 12:09:30.031738",
+ "modified": "2026-01-27 19:16:55.220837",
  "modified_by": "Administrator",
  "module": "Events",
  "name": "Buzz Event",
